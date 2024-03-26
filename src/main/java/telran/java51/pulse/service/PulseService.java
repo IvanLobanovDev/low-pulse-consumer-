@@ -13,6 +13,9 @@ public class PulseService {
 	@Bean
 	Consumer<PulseDTO> receiveData(){
 		return data -> {
+			if (data == null) {
+				return;
+			}
 			long delay = System.currentTimeMillis() - data.getTimestamp();
 			System.out.println("delay: " + delay + ", id: " + data.getId() + ", pulse: " + data.getPayload());
 		};
